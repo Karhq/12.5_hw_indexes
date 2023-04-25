@@ -27,6 +27,8 @@ where date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and
 
 #### Ответ: 
 
-```sql
+Время на вывод стандартного запроса занимает - 6.806 секунд.  
+![Скрин](https://github.com/Karhq/12.5_hw_indexes/blob/main/Nom2.png)  
 
-```
+Судя по выводу, после запроса, на мой взгляд? в данном запросе лишним будет запрос к таблице film и к f.tite - сключаем их, и время вывода необходимой таблицы сокращается до 17ms, что уже является не плохим результатом.   
+![Скрин](https://github.com/Karhq/12.5_hw_indexes/blob/main/Nom3.png)  

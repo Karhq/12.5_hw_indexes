@@ -48,3 +48,20 @@ group by c.customer_id
 
 Проведем повторный Explain Analize
 ![Скрин](https://github.com/Karhq/12.5_hw_indexes/blob/main/Nom6.png)  
+
+Создаем индекс, для таблицы payment, поля payment_date. Изменяем запрои и проводим анализ повторно. 
+```sql
+CREATE INDEX pd_index ON payment(payment_date);
+```
+
+```sql
+EXPLAIN ANALYZE
+select concat(c.last_name, ' ', c.first_name), sum(p.amount)
+from payment p
+join rental r ON p.payment_date = r.rental_date
+join customer c ON r.customer_id = c.customer_id
+join inventory i ON i.inventory_id = r.inventory_id
+where p.payment_date >= '2005-07-30' and p.payment_date < DATE_ADD('2005-07-30', INTERVAL 1 DAY)
+group by c.customer_id
+```
+![Скрин](https://github.com/Karhq/12.5_hw_indexes/blob/main/Nom7.png)  
